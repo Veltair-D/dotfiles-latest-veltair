@@ -10,7 +10,7 @@ source "$HOME/github/dotfiles-latest/colorscheme/active/active-colorscheme.sh"
 # #############################################################################
 
 # Tmux prefix key
-set -g prefix C-a
+set -g prefix C-b
 
 # "xterm-256color" in alacritty and "screen-256color" in tmux doesnt have paste issues in neovim
 # "checkhealth" command in neovim shows no color warnings
