@@ -10,7 +10,7 @@ source "$HOME/github/dotfiles-latest/colorscheme/active/active-colorscheme.sh"
 # #############################################################################
 
 # Tmux prefix key
-set -g prefix C-b
+set -g prefix C-a
 
 # "xterm-256color" in alacritty and "screen-256color" in tmux doesnt have paste issues in neovim
 # "checkhealth" command in neovim shows no color warnings
@@ -183,10 +183,10 @@ bind p select-window -t 4
 # ctrl+b : -> new -s 0 -> new session with name '0'
 # ctrl+b $ -> rename current session
 # ctrl+b s -> show list of sessions
-# bind 7 switch-client -t 1
-# bind 8 switch-client -t 2
-# bind 9 switch-client -t 3
-# bind 0 switch-client -t 4
+bind 7 switch-client -t 1
+bind 8 switch-client -t 2
+bind 9 switch-client -t 3
+bind 0 switch-client -t 4
 
 # If you want to use the default meta key, which is 'option' in macos, you have to
 # configure the alacritty 'option_as_alt' option, but that messed up my hyper key,
@@ -300,7 +300,7 @@ bind-key -r 1 run-shell "tmux neww $daily_note"
 unbind 2
 bind-key -r 2 run-shell "tmux neww $karabiner_rules"
 unbind 6
-bind-key -r 6 run-shell "tmux neww $colorscheme_selector"
+bind-key -r 6 run-shell "tmux neww $colorscheme_selecjor"
 
 ###############################################################################
 
@@ -486,7 +486,7 @@ set -g @catppuccin_window_number_position "right"
 set -g @catppuccin_status_modules_left "session"
 
 # # set -g @catppuccin_status_modules_right "none"
-# set -g @catppuccin_status_modules_right "directory"
+set -g @catppuccin_status_modules_right "directory"
 # set -g @catppuccin_directory_text " linkarzu   If you like the video like it  , and remember to subscribe   "
 # set -g @catppuccin_directory_color "#04d1f9"
 # set -g @catppuccin_directory_icon "null"
