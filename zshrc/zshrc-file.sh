@@ -126,7 +126,7 @@ create_symlink ~/github/dotfiles-latest/neovim/kickstart.nvim/ ~/.config/kicksta
 create_symlink ~/github/dotfiles-latest/neovim/lazyvim/ ~/.config/lazyvim
 create_symlink ~/github/dotfiles-latest/hammerspoon/ ~/.hammerspoon
 create_symlink ~/github/dotfiles-latest/karabiner/mxstbr/ ~/.config/karabiner
-create_symlink ~/github/dotfiles-latest/sketchybar/felixkratz-linkarzu/ ~/.config/sketchybar
+create_symlink ~/github/dotfiles-latest/sketchybar/felixkratz/ ~/.config/sketchybar
 create_symlink ~/github/dotfiles-latest/neovide/ ~/.config/neovide
 create_symlink ~/github/dotfiles-latest/ghostty/ ~/.config/ghostty
 create_symlink ~/github/dotfiles-latest/rio/ ~/.config/rio
@@ -732,6 +732,11 @@ EOF
   if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
   fi
+
+  # Source zsh-syntax-highlighting
+
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
 
   # Changed from z.lua to zoxide, as it's more maintaned
   # smarter cd command, it remembers which directories you use most
