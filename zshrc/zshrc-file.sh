@@ -665,7 +665,7 @@ EOF
   # Normal mode to use vim commands
   # test {really} long (command) using a { lot } of symbols {page} and {abc} and other ones [find] () "test page" {'command 2'}
   if [ -f "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ]; then
-    source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+    source "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
     # Following 4 lines modify the escape key to `kj`
     ZVM_VI_ESCAPE_BINDKEY=kj
     ZVM_VI_INSERT_ESCAPE_BINDKEY=$ZVM_VI_ESCAPE_BINDKEY
@@ -730,7 +730,7 @@ EOF
   # https://github.com/zsh-users/zsh-autosuggestions
   # Right arrow to accept suggestion
   if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
   fi
 
   # Changed from z.lua to zoxide, as it's more maintaned
@@ -901,7 +901,7 @@ if [ "$OS" = 'Linux' ]; then
   # Source zsh-autosuggestions if file exists
   install_this_package="no"
   if [ -f "$HOME/github/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-    source $HOME/github/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source "$HOME/github/zsh-autosuggestions/zsh-autosuggestions.zsh"
   else
     if [ "$install_this_package" != "no" ]; then
       echo
