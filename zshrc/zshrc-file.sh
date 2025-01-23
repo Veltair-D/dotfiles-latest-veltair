@@ -603,12 +603,18 @@ EOF
     # echo -e "y\ny\nn" | /opt/homebrew/opt/fzf/install
 
     source ~/.fzf.zsh
-
+    eval "$(fzf --zsh)"
     # Preview file content using bat
     export FZF_CTRL_T_OPTS="
     --preview 'bat -n --color=always {}'
     --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
+    # Override default command
+    export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+    # Assign default command to alt-t
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    # Create alt-c command to view directories only
+    export FZF_CTRL_C_COMMAND="fd --type=d --hidden -strip-cwd-prefil --exclude .git"
     # Use :: as the trigger sequence instead of the default **
     export FZF_COMPLETION_TRIGGER='::'
 
