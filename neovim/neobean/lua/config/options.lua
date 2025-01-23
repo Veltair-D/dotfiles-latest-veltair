@@ -350,18 +350,26 @@ if vim.g.neovide then
   -- neovim keymaps that use alt, like alt+t for the terminal
   -- https://youtu.be/33gQ9p-Zp0I
   vim.g.neovide_input_macos_option_key_is_meta = "only_right"
+
+  -- Helper function for transparency formatting
+  local alpha = function()
+    return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+  end
+  -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+  vim.g.neovide_transparency = 0.0
+  vim.g.transparency = 0.8
+  vim.g.neovide_background_color = "#0f1117" .. alpha()
+
+  -- I also want the vim.g.neovim_mode cursor color to be changed
+  -- Neovide cursor color, remember to set these in your colorscheme, I have
+  -- mine set in ~/github/dotfiles-latest/neovim/neobean/lua/plugins/colorschemes/eldritch.lua
+  -- Otherwise, my cursor was white
+  vim.opt.guicursor = {
+    "n-v-c-sm:block-Cursor", -- Use 'Cursor' highlight for normal, visual, and command modes
+    "i-ci-ve:ver25-lCursor", -- Use 'lCursor' highlight for insert and visual-exclusive modes
+    "r-cr:hor20-CursorIM", -- Use 'CursorIM' for replace mode
+  }
 end
-
--- I also want the vim.g.neovim_mode cursor color to be changed
--- Neovide cursor color, remember to set these in your colorscheme, I have
--- mine set in ~/github/dotfiles-latest/neovim/neobean/lua/plugins/colorschemes/eldritch.lua
--- Otherwise, my cursor was white
-vim.opt.guicursor = {
-  "n-v-c-sm:block-Cursor", -- Use 'Cursor' highlight for normal, visual, and command modes
-  "i-ci-ve:ver25-lCursor", -- Use 'lCursor' highlight for insert and visual-exclusive modes
-  "r-cr:hor20-CursorIM", -- Use 'CursorIM' for replace mode
-}
-
 -- ############################################################################
 --                           End of Neovide section
 -- ############################################################################

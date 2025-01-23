@@ -6,7 +6,6 @@ fork = false
 # (macOS only) buttonless: All decorations, but without quit, minimize or fullscreen buttons.
 # frame = "full"
 frame = "transparent"
-transparency = 0.7
 idle = true
 maximized = false
 # neovim-bin = "/opt/homebrew/bin/nvim"
