@@ -160,7 +160,7 @@ return {
         -- Third class citizen mf always talking shit
         copilot = {
           name = "copilot",
-          enabled = true,
+          enabled = false,
           module = "blink-cmp-copilot",
           kind = "Copilot",
           min_keyword_length = 6,
