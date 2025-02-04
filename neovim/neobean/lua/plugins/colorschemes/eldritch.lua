@@ -12,6 +12,7 @@ return {
   lazy = true,
   name = "eldritch",
   opts = {
+    transparent_mode = true,
     -- Overriding colors globally using a definitions table
     on_colors = function(global_colors)
       -- Define all color overrides in a single table

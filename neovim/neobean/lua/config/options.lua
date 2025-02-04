@@ -272,7 +272,7 @@ vim.opt.sessionoptions = {
 -- I mainly type in english, if I set it to both above, files in English get a
 -- bit confused and recognize words in spanish, just for spanish files I need to
 -- set it to both
-vim.opt.spelllang = { "en" }
+vim.opt.spelllang = { "en,es" }
 
 -- -- My cursor was working fine, not  sure why it stopped working in wezterm, so
 -- -- the config below fixed it
@@ -352,9 +352,9 @@ if vim.g.neovide then
   vim.g.neovide_input_macos_option_key_is_meta = "only_right"
 
   -- Helper function for transparency formatting
-  local alpha = function()
-    return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
-  end
+  --  local alpha = function()
+  --  return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+  --end
   -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
   vim.g.neovide_normal_opacity = 0.8
 
