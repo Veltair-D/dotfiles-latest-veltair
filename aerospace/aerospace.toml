@@ -53,18 +53,18 @@ on-focus-changed = "move-mouse window-lazy-center"
 # Run Sketchybar together with AeroSpace
 # sketchbar has a built-in detection of already running process,
 # so it won't be run twice on AeroSpace restart
-after-startup-command = ['exec-and-forget sketchybar']
+# after-startup-command = ['exec-and-forget sketchybar']
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+# exec-on-workspace-change = ['/bin/bash', '-c',
+#     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# ]
 [gaps]
 inner.horizontal = 5
 inner.vertical =   5
 outer.left =       5
 outer.bottom =     5
-outer.top =        40
+outer.top =        5
 outer.right =      5
 
 # 'main' binding mode declaration
@@ -120,6 +120,7 @@ alt-t = 'workspace T'
 alt-v = 'workspace V'
 alt-w = 'workspace W'
 alt-o = 'workspace O'
+alt-d = 'workspace D'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -133,6 +134,8 @@ alt-shift-t = 'move-node-to-workspace T'
 alt-shift-v = 'move-node-to-workspace V'
 alt-shift-w = 'move-node-to-workspace W'
 alt-shift-o = 'move-node-to-workspace O'
+alt-shift-d = 'move-node-to-workspace D'
+
 
 alt-shift-f = 'fullscreen'
 
@@ -203,4 +206,11 @@ if.app-id='md.obsidian'
 run=[
   "layout tiling",
   "move-node-to-workspace O"
+]
+
+[[on-window-detected]]
+if.app-id='com.hnc.Discord'
+run=[
+  "layout tiling",
+  "move-node-to-workspace D"
 ]

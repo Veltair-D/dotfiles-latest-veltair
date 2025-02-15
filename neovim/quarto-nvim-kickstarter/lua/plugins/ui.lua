@@ -51,7 +51,6 @@ return {
           vimgrep_arguments = vimgrep_arguments,
           file_ignore_patterns = {
             'node_modules',
-            '%_files/',
             '%_cache',
             '.git/',
             'site_libs',
@@ -96,10 +95,10 @@ return {
             require('telescope.themes').get_dropdown(),
           },
           fzf = {
-            fuzzy = true, -- false will only do exact matching
+            fuzzy = true,                   -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
           },
         },
       }
@@ -114,6 +113,26 @@ return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
+  },
+
+  { -- edit the file system as a buffer
+    'stevearc/oil.nvim',
+    opts = {
+      keymaps = {
+        ['<C-s>'] = false,
+        ['<C-h>'] = false,
+        ['<C-l>'] = false,
+      },
+      view_options = {
+        show_hidden = true,
+      },
+    },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '-',          ':Oil<cr>', desc = 'oil' },
+      { '<leader>ef', ':Oil<cr>', desc = 'edit [f]iles' },
+    },
+    cmd = 'Oil',
   },
 
   { -- statusline
@@ -171,6 +190,11 @@ return {
     enabled = false,
   },
 
+  {
+    "NStefan002/screenkey.nvim",
+    lazy = false,
+  },
+
   { -- filetree
     'nvim-tree/nvim-tree.lua',
     enabled = true,
@@ -222,12 +246,25 @@ return {
   },
 
   { -- show tree of symbols in the current file
-    'simrat39/symbols-outline.nvim',
-    cmd = 'SymbolsOutline',
+    'hedyhli/outline.nvim',
+    cmd = 'Outline',
     keys = {
-      { '<leader>lo', ':SymbolsOutline<cr>', desc = 'symbols outline' },
+      { '<leader>lo', ':Outline<cr>', desc = 'symbols outline' },
     },
-    opts = {},
+    opts = {
+      providers = {
+        priority = { 'markdown', 'lsp',  'norg' },
+        -- Configuration for each provider (3rd party providers are supported)
+        lsp = {
+          -- Lsp client names to ignore
+          blacklist_clients = {},
+        },
+        markdown = {
+          -- List of supported ft's to use the markdown provider
+          filetypes = { 'markdown', 'quarto' },
+        },
+      },
+    },
   },
 
   { -- or show symbols in the current file as breadcrumbs
@@ -314,14 +351,12 @@ return {
     enabled = true,
     dev = false,
     ft = { 'markdown', 'quarto', 'vimwiki' },
+    cond = function()
+      -- Disable on Windows system
+       return vim.fn.has 'win32' ~= 1 
+    end,
     dependencies = {
-      {
-        'vhyrro/luarocks.nvim',
-        priority = 1001, -- this plugin needs to run before anything else
-        opts = {
-          rocks = { 'magick' },
-        },
-      },
+       'leafo/magick', -- that's a lua rock
     },
     config = function()
       -- Requirements
@@ -331,7 +366,8 @@ return {
       -- sudo apt install imagemagick
       -- sudo apt install libmagickwand-dev
       -- sudo apt install liblua5.1-0-dev
-      -- sudo apt installl luajit
+      -- sudo apt install lua5.1
+      -- sudo apt install luajit
 
       local image = require 'image'
       image.setup {
@@ -340,12 +376,12 @@ return {
           markdown = {
             enabled = true,
             only_render_image_at_cursor = true,
+            -- only_render_image_at_cursor_mode = "popup",
             filetypes = { 'markdown', 'vimwiki', 'quarto' },
           },
         },
         editor_only_render_when_focused = false,
         window_overlap_clear_enabled = true,
-        -- window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', 'scrollview' },
         tmux_show_only_in_active_window = true,
         window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', 'scrollview', 'scrollview_sign' },
         max_width = nil,
@@ -365,7 +401,7 @@ return {
 
       local function get_image_at_cursor(buf)
         local images = image.get_images { buffer = buf }
-        local row = vim.api.nvim_win_get_cursor(0)[1]
+        local row = vim.api.nvim_win_get_cursor(0)[1] - 1
         for _, img in ipairs(images) do
           if img.geometry ~= nil and img.geometry.y == row then
             local og_max_height = img.global_state.options.max_height_window_percentage
@@ -411,7 +447,7 @@ return {
         handle_zoom(bufnr)
       end, { buffer = true, desc = 'image [o]pen' })
 
-      vim.keymap.set('n', '<leader>ic', clear_all_images, { buffer = true, desc = 'image [c]lear' })
+      vim.keymap.set('n', '<leader>ic', clear_all_images, { desc = 'image [c]lear' })
     end,
   },
 }

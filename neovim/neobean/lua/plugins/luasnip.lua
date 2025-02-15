@@ -406,12 +406,12 @@ return {
     ls.add_snippets("markdown", snippets)
 
     -- Path to the text file containing video snippets
-    local snippets_file = vim.fn.expand("~/github/obsidian_main/300-youtube/youtube-video-list.txt")
-    local video_snippets = load_snippets_from_file(snippets_file)
-    local video_md_snippets = ytmdlinks_from_file(snippets_file)
-    -- Add both types of snippets to the "all" filetype
-    ls.add_snippets("all", video_snippets)
-    ls.add_snippets("all", video_md_snippets)
+    -- local snippets_file = vim.fn.expand("~/github/obsidian_main/300-youtube/youtube-video-list.txt")
+    -- local video_snippets = load_snippets_from_file(snippets_file)
+    -- local video_md_snippets = ytmdlinks_from_file(snippets_file)
+    -- -- Add both types of snippets to the "all" filetype
+    -- ls.add_snippets("all", video_snippets)
+    -- ls.add_snippets("all", video_md_snippets)
 
     -- #####################################################################
     --                         all the filetypes

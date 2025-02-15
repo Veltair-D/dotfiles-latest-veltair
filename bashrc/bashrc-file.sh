@@ -155,3 +155,4 @@ if [ "$OS" = 'Mac' ]; then
   fi
 
 fi
+. "$HOME/.cargo/env"
